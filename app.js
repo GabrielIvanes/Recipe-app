@@ -1,11 +1,11 @@
 const research = document.querySelector(".fa-magnifying-glass");
 const filters = document.querySelectorAll(".filters button");
-let filterOn = false; // filter active or not
+let filterOn = false; // Indicates if a filter is active or not
 let filterType = ""; // i or c or a or s by default
-let filterName = ""; // Filter choosed
-let search = ""; // search --> recipe or filter
+let filterName = ""; // Selected filter name
+let search = ""; // Search term (recipe or filter)
 
-// Autocomplete
+// Autocompletion
 document
   .querySelector(".search-input")
   .addEventListener("input", autoCompletion);
@@ -26,6 +26,7 @@ function autoCompletion() {
     filterType = "s";
     search = recipe;
   }
+  // If we have chosen a filter or if we have started writing in the input
   if (filterOn || recipe !== "") {
     const url = `https://www.themealdb.com/api/json/v1/1/${typeUrl}.php?${filterType}=${search}`;
     fetch(url)
@@ -34,8 +35,8 @@ function autoCompletion() {
         if (data.meals) {
           options = [];
           optionsImg = [];
-          options = data.meals.map((meal) => meal.strMeal);
-          optionsImg = data.meals.map((meal) => meal.strMealThumb);
+          options = data.meals.map((meal) => meal.strMeal); // Array with name of all returned recipes 
+          optionsImg = data.meals.map((meal) => meal.strMealThumb); // Array with image of all returned recipes
           list.innerHTML = "";
           for (let i = 0; i < options.length; i++) {
             const container = document.createElement("div");
@@ -61,6 +62,7 @@ function autoCompletion() {
   }
 }
 
+// Autocompletion of the clicked filter values
 filters.forEach((filter) => {
   filter.addEventListener("click", (event) => {
     filters.forEach((filter) => {
@@ -100,6 +102,7 @@ filters.forEach((filter) => {
           }
         });
     }
+    // Remove autocompletion of the filters
     document.addEventListener("click", (e) => {
       if (e.target !== list && e.target !== event.target) {
         list.style.display = "none";
@@ -109,7 +112,7 @@ filters.forEach((filter) => {
   });
 });
 
-// Remove autoComplete
+// Remove autocompletion of the input
 document.addEventListener("click", (event) => {
   const input = document.querySelector(".search-input");
   const list = document.querySelector(".search-box .list");
@@ -125,7 +128,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Put the recipe choosed in the list in the input
+// Put the chosen recipe in the input
 function chosenRecipe(container) {
   const input = document.querySelector(".search-input");
   const recipe = container.querySelector("div").innerText;
@@ -135,7 +138,7 @@ function chosenRecipe(container) {
   list.innerHTML = `<div>${recipe}</div>`;
 }
 
-// Put the filter in the button name and changes of the parameters of the API
+// Places the filter in the button name and changes the API settings.
 function chosenFilter(filter) {
   const button = filter.parentElement.parentElement.querySelector("button");
   filterName = filter.innerText;
@@ -162,7 +165,7 @@ function chosenFilter(filter) {
   }
 }
 
-// Search cliked
+//Magnifier is clicked
 research.addEventListener("click", recipeWithName);
 
 // Enter touched, if there are many answer, enter will just set the first result in the input
