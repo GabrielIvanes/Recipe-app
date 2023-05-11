@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Recipe App | Gabriel Ivanes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="search-box">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Enter a new recipe"
+        />
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="list"></div>
+      </div>
+      <div class="filters">
+        <div>filters:</div>
+        <div class="main-ingredient filter">
+          <button>main ingredient</button>
+          <div class="list"></div>
+        </div>
+        <div class="category filter">
+          <button>category</button>
+          <div class="list"></div>
+        </div>
+        <div class="area filter">
+          <button>area</button>
+          <div class="list"></div>
+        </div>
+      </div>
+      <button class="random-recipe">Random recipe</button>
+      <div class="recipe">
+        <div class="recipe-info-wrapper"></div>
+        <div class="recipe-task-wrapper">
+          <h1>Instructions</h1>
+          <ul class="instructions"></ul>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/7c8801c017.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
